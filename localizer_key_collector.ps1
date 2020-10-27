@@ -24,7 +24,7 @@ Get-Childitem -Path . -Include "*.cshtml" -Recurse | ForEach-Object {
     Foreach-Object { $_.Matches } | 
     Foreach-Object { $_.Groups[1].Value } 
 
-    $localizerKeyExtractor = '@' + $varName + '\["(.*)"\]'
+    $localizerKeyExtractor = '@' + $varName + '\["(.*?)"\]'
     
     $fileContent | Select-String $localizerKeyExtractor -AllMatches | Foreach-Object { $_.Matches } | Foreach-Object { $_.Groups[1].Value | Out-File -FilePath $locFilePath -Append -Encoding utf8 }
 }
